@@ -7,6 +7,8 @@ from rest_framework.response import Response
 from book_api.serializer import BookSerializer
 from rest_framework.decorators import api_view
 
+from rest_framework import status
+
 @api_view(["GET"])
 def book_list(request):
     books = Book.objects.all()
@@ -27,3 +29,14 @@ def book_create(request):
         return Response(serializer.data)
     else:
         return Response(serializer.errors)
+    
+
+@api_view(["GET"])
+def book(request,id):
+    try:
+        book = Book.objects.get(pk=id)
+        serializer = BookSerializer(book)
+        return Response(serializer.data)
+
+    except:
+        return Response({"error":"Eşleşen bir kayıt yok"}, status=status.HTT_NOT_FOUND)
