@@ -40,3 +40,12 @@ def book(request,id):
 
     except:
         return Response({"error":"Eşleşen bir kayıt yok"}, status=status.HTT_NOT_FOUND)
+
+@api_view(["POST"])
+def book_update(request,id):
+    book = Book.objects.get(pk=id)
+    serializer =  BookSerializer(book,data = request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.error)
