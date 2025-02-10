@@ -49,3 +49,9 @@ def book_update(request,id):
         serializer.save()
         return Response(serializer.data)
     return Response(serializer.error)
+
+@api_view(["DELETE"])
+def book_delete(request,id):
+    book = Book.objects.get(pk=id)
+    book.delete()
+    return Response(status= status.HTTP_204_NO_CONTENT)
