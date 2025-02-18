@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from book_api.models import Book
 
-
+#model verisi json formatina cevirilir.
 class BookSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only = True)
     title = serializers.CharField()

@@ -9,6 +9,8 @@ from rest_framework.decorators import api_view
 
 from rest_framework import status
 
+#Bu tür işlemleri gerçekleştirebilmek için BookSerializer kullanılarak kitapların verisi doğrulanır, işlenir ve JSON formatında döndürülür.
+
 @api_view(["GET"])
 def book_list(request):
     books = Book.objects.all()
